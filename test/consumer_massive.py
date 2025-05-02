@@ -125,32 +125,8 @@ async def check_base_temp():
                         logger.info(f"Bot tag response created > {msg_tag}")  
 
 
-
-                        ##### filters ####### 
-                        logger.info("Conversation Status..")
-                        if "cierr" in msg_tag:
-                            enviar_mensaje(phone, msg_cop)
-                            write_closed_deals(phone,time_now)
-                            notify_human(f"Cierre de: {client_name}/{phone[-4:]} (alta)",chat_complete)
-                            logger.info("Closed Cause : Afilitation Interest")
-                        elif "agresi" in msg_tag:
-                            enviar_mensaje(phone, msg_cop)
-                            notify_human(f"Cierre de: {client_name}/{phone[-4:]} (agresivo)",chat_complete)
-                            write_closed_deals(phone,time_now)
-                            logger.info("Closed Cause : Bad Behaviour")
-                        elif "frust" in msg_tag:
-                            enviar_mensaje(phone, msg_cop)
-                            notify_human(f"Cierre de: {client_name}/{phone[-4:]} (frustacion)",chat_complete)
-                            write_closed_deals(phone,time_now)
-                            logger.info("Closed Cause : Frustration")
-                        elif "ayud" in msg_tag:
-                            enviar_mensaje(phone, msg_cop)
-                            notify_human(f"Cierre de: {client_name}/{phone[-4:]} (ayuda)",chat_complete)
-                            write_closed_deals(phone,time_now)
-                            logger.info("Closed Cause : Human Help")
-                        else:
-                            enviar_mensaje(phone,msg_cop) 
-                            logger.info("Conversation remains open")
+                        logger.info(f"Enviando respuesta:{msg_cop} al cliente {client_name}")
+                        logger.info("Conversation remains open")
 
 
                         ####### REDIS #######
@@ -159,9 +135,6 @@ async def check_base_temp():
 
                     except:
                         logger.info("Failed to answer the customer. going with human.")
-                        enviar_mensaje(phone, "En estos momentos nuestro sistema se encuentra saturado, un representante se pondra en contacto en la brevedad. Desde ya muchas Gracias")
-                        notify_human(f"Error en nuestro sistema {client_name}/{phone[-4:]}",chat_complete)
-                        write_closed_deals(phone,tag_created_at)
 
                     
 

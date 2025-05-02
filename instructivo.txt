@@ -1,0 +1,32 @@
+Preparar Entorno Cliente.
+
+Subdominios:
+1- Armar subdominio (cloudflare) para recibir notificaciones via webhook.
+
+Meta:
+1- Crear app de la cuenta del Cliente.
+2- Generar token permanente (desde usuario del sistema).
+3- Cargar numero de telefono (se necesita validacion via SMS).
+4- Habilitar desde Postman los endpoints de Telefono y Suscripciones.
+5- Levantar en webhook las suscripciones relacionadas a recibir mensajes. 
+(es necesario una contraseña que se setea dentro del cliente consumidor de kafka)
+
+BigQuery:
+1- Levantar Dataset del cliente
+
+APP:
+1- Modificar Variables de Entorno
+    a- GBQ Paths
+    b- Wpp keys
+    c- Email Receiver
+    d- Redis Port
+    e- Kafka Port
+    f- Modificar Puerto del server
+
+Prompts:
+-Cargar Prompts antes de correr compose.
+    from app.utils.prompts import *
+    creating_json()
+
+Tablas GBQ:
+- Correr modelos desde el archivo aux modelos (bq_add_tables.py)

@@ -16,7 +16,7 @@ def calculate_cost(response_json,model):
     usage = response_json.get('usage', {})
     input_cost = cost_data["costo"]["input"] / 1000 * usage.get('prompt_tokens', 0)
     output_cost = cost_data["costo"]["output"] / 1000 * usage.get('completion_tokens', 0)
-    total_cost = round(input_cost + output_cost,2)   
+    total_cost = round(input_cost + output_cost,4)   
     return total_cost
 
 

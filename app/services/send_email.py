@@ -3,7 +3,7 @@ import ast
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from app.utils.logger import logger
-from app.config.config import SENDER_EMAIL,SENDER_PASSWORD,RECIPIENT_EMAIL
+from app.config.config import SENDER_EMAIL,SENDER_PASSWORD,RECIPIENT_EMAIL_INTERN,RECIPIENT_EMAIL_CLIENT
 
 def notify_human(subject, chat):
     """Envía un correo con los detalles de la conversación en formato estructurado."""
@@ -24,7 +24,7 @@ def notify_human(subject, chat):
     # Crear el mensaje
     msg = MIMEMultipart()
     msg['From'] = SENDER_EMAIL
-    msg['To'] = RECIPIENT_EMAIL
+    msg['To'] = ", ".join([RECIPIENT_EMAIL_INTERN, RECIPIENT_EMAIL_CLIENT])
     msg['Subject'] = subject
     msg.attach(MIMEText(email_body, 'plain'))
 

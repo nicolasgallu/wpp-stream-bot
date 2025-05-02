@@ -1,22 +1,20 @@
 import os
 import redis
-from dotenv import load_dotenv
-
-load_dotenv()
-
-
 
 ### WPP ###
 WPP_TOKEN = os.getenv("WPP_TOKEN")
 WPP_ID = os.getenv("WPP_ID")
 META_APP_SECRET = os.getenv("META_APP_SECRET")
 
+### FLASK ###
+FLASK_PORT   = os.getenv("FLASK_PORT")
+
 ### KAFKA ###
-K_SERVER = os.getenv("KAFKA_SERVER", "kafka") 
-K_PORT   = os.getenv("KAFKA_PORT",   "9092")
-K_GROUP  = os.getenv("KAFKA_GROUP",  "user-group")
-K_OFFSET = os.getenv("KAFKA_OFFSET", "earliest")
-K_TOPIC  = os.getenv("KAFKA_TOPIC",  "orders")
+K_SERVER = os.getenv("KAFKA_SERVER") 
+K_PORT   = os.getenv("KAFKA_PORT")
+K_GROUP  = os.getenv("KAFKA_GROUP")
+K_OFFSET = os.getenv("KAFKA_OFFSET")
+K_TOPIC  = os.getenv("KAFKA_TOPIC")
 
 BOOTSTRAP = f"{K_SERVER}:{K_PORT}"
 KAFKA_CONFIG_PROD = {"bootstrap.servers": BOOTSTRAP}
@@ -26,7 +24,7 @@ KAFKA_CONFIG_CONS = {
     "auto.offset.reset": K_OFFSET,
 }
 
-### REDIS DB ###
+### REDIS ###
 R_HOST = os.getenv("R_HOST")
 R_PORT = os.getenv("R_PORT")
 RDB_CLIENT_MSG = redis.Redis(host=R_HOST, port=R_PORT, db=0)
@@ -49,14 +47,16 @@ GBQ_CREEDENTIALS = {
 'universe_domain': os.getenv("universe_domain")
 }
 
-# ✅ Reparar la private_key si viene con \n como texto
+# Reparar la private_key si viene con \n como texto
 if GBQ_CREEDENTIALS['private_key'].startswith("-----BEGIN") and "\\n" in GBQ_CREEDENTIALS['private_key']:
     GBQ_CREEDENTIALS['private_key'] = GBQ_CREEDENTIALS['private_key'].replace('\\n', '\n')
 
 
 ### GBQ DATASET PATH ###
-DATASET_ID =  "wpp_obra_social"
-BQ_TABLE_PROMPTS = "prompts"
+DATASET_ID =  os.getenv("DATASET_ID")
+
+### GBQ TABLES NAMES ###
+BQ_TABLE_PROMPTS = os.getenv("BQ_TABLE_PROMPTS")
 
 
 ### GBQ TABLES SCHEMA ###
@@ -82,7 +82,6 @@ GBQ_BOT_CLOSED_DEALS = {
     }
 
 
-
 ### LLM MODELS ###
 COST_1K_TOKENS = {
     "gpt-4": {"costo": {"input": 0.03,"output": 0.06}},
@@ -90,18 +89,19 @@ COST_1K_TOKENS = {
     "deepseek-reasoner": {"costo": {"input": 0.00055,"output": 0.00219}},
 }
 
-### PROJECT SETTINGS ###
-#time to acumulate messages (seconds)#
-TIMER = 5
-#notify human & internal#
-SENDER_EMAIL = os.getenv("SENDER_EMAIL")
-SENDER_PASSWORD = os.getenv("SENDER_PASSWORD")
-RECIPIENT_EMAIL = os.getenv("RECIPIENT_EMAIL")
-
-
 #LLM MODELS AND KEYS
 DS_MODEL_R1 = os.getenv("DS_MODEL_REASONER")
 DS_MODEL_V3 = os.getenv("DS_MODEL_CHAT")
 GPT_MODEL_4 = os.getenv("GPT_MODEL") 
 DS_API_KEY = os.getenv("DS_API_KEY")
 GPT_API_KEY= os.getenv("GPT_API_KEY")
+
+
+### PROJECT SETTINGS ###
+#time to acumulate messages (seconds)#
+TIMER = 5
+#notify human & internal#
+SENDER_EMAIL = os.getenv("SENDER_EMAIL")
+SENDER_PASSWORD = os.getenv("SENDER_PASSWORD")
+RECIPIENT_EMAIL_CLIENT = os.getenv("RECIPIENT_EMAIL_CLIENT")
+RECIPIENT_EMAIL_INTERN = os.getenv("RECIPIENT_EMAIL_INTERN")

@@ -1,12 +1,11 @@
 from app.redis.closed_deals import read_closed_deals
 from app.redis.client_messages import write_client_msgs
 from app.kafka.topics import ensure_topic
-from app.config.config import KAFKA_CONFIG_PROD,K_TOPIC,META_APP_SECRET
+from app.config.config import KAFKA_CONFIG_PROD,K_TOPIC,META_APP_SECRET,FLASK_PORT
 from app.utils.logger import logger
 from confluent_kafka import Producer
 from flask import Flask,request,make_response
 from datetime import datetime
-
 import hmac
 import hashlib
 
@@ -69,6 +68,7 @@ def webhook ():
                         ##AVISAR AL CLIENTE QUE RECIBIMOS UN NUEVO MENSAJE EN EL BOT ASSISTANT
                         return make_response('',200)
                     else:
+                        print(f"Received message: {message} from: {phone}")
                         kafka_message = f"{phone}|{message}|{created_at}|{name}"
                         producer.produce(K_TOPIC, key=phone, value=kafka_message)
                         write_client_msgs(phone,name,message,created_at)
@@ -89,5 +89,5 @@ def webhook ():
         return make_response('',400)
         
 if  __name__ == "__main__":
-    app.run(host="0.0.0.0", port=7000)
+    app.run(host="0.0.0.0", port=FLASK_PORT)
     producer.flush() # Ensure all messages are delivered

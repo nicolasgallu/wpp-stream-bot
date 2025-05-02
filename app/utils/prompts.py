@@ -1,8 +1,6 @@
 from app.gbq.reading import get_prompt
 from app.utils.logger import logger
 import json
-##MEJORAR RUTA PARA NO TENER PROBLEMAS.
-
 
 def creating_json():
     prompts = {
@@ -22,6 +20,7 @@ def creating_json():
     with open("app/utils/prompts.json", "w",encoding='utf-8') as file:
         json.dump(prompts, file, indent=4, ensure_ascii=False)
     file.close()
+    logger.info("Creating/Updating Prompt runned succesfully.")
 
 
 def enhancing_json(category,chat=None):
@@ -32,4 +31,5 @@ def enhancing_json(category,chat=None):
     else:
         None
     file.close()
+    logger.info("Prompt readed succesfully.")
     return str(prompts[category])

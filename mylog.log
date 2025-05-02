@@ -1,0 +1,18 @@
+2025-04-25 00:16:20,697 - myLogger - INFO - Respuesta enviada al usuario: 5493517710609
+2025-04-25 00:17:40,734 - myLogger - INFO - Respuesta enviada al usuario: 5493517710609
+2025-04-25 00:32:34,392 - myLogger - INFO - Success pulling data from Documentacion
+2025-04-25 00:32:35,835 - myLogger - INFO - Success pulling data from System_Prompt_Assistant
+2025-04-25 00:32:37,264 - myLogger - INFO - Success pulling data from System_Prompt_Cop
+2025-04-25 00:32:38,681 - myLogger - INFO - Success pulling data from System_Prompt_Tag
+2025-04-25 00:32:38,684 - myLogger - INFO - Creating/Updating Prompt runned succesfully.
+2025-04-25 10:12:38,248 - myLogger - INFO - Success pulling data from Documentacion
+2025-04-25 10:12:40,008 - myLogger - INFO - Success pulling data from System_Prompt_Assistant
+2025-04-25 10:12:41,881 - myLogger - INFO - Success pulling data from System_Prompt_Cop
+2025-04-25 10:12:43,907 - myLogger - INFO - Success pulling data from System_Prompt_Tag
+2025-04-25 10:12:43,917 - myLogger - INFO - Creating/Updating Prompt runned succesfully.
+2025-04-26 13:12:45,564 - myLogger - INFO - Tabla 'bot_closed_deals' dont exists, creating now..
+2025-04-26 13:12:46,052 - myLogger - INFO - Tabla 'bot_closed_deals' creada exitosamente
+2025-04-26 13:12:46,407 - myLogger - INFO - Tabla 'bot_messages' dont exists, creating now..
+2025-04-26 13:12:46,893 - myLogger - INFO - Tabla 'bot_messages' creada exitosamente
+2025-04-26 13:12:47,208 - myLogger - INFO - Tabla 'client_messages' dont exists, creating now..
+2025-04-26 13:12:47,639 - myLogger - INFO - Tabla 'client_messages' creada exitosamente
